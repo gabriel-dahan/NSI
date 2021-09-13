@@ -1,6 +1,6 @@
 def max(*args) -> int:
     """ Returns the greater number in the list of arguments """
-    return sorted(args)[:-1]
+    return sorted(args)[-1]
 
 def isleap(year: int) -> bool:
     """ Returns whether a year is leap year or not """
