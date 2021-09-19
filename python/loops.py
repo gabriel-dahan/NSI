@@ -63,7 +63,7 @@ def month_days_nmb(year, month):
     else:
         return 30
 
-def date_passed_days(date: str, separator: str = '/') -> int:
+def passed_days(date: str, separator: str = '/') -> int:
     """ Returns the number of passed days since the date's year started. """
     date = tuple(int(elem) for elem in date.split(separator))
     days = 0
@@ -72,7 +72,7 @@ def date_passed_days(date: str, separator: str = '/') -> int:
     days += date[0]
     return days
 
-def date_remaining_days(date: str, separator: str = '/') -> int:
+def remaining_days(date: str, separator: str = '/') -> int:
     """ Returns the number of remaining days before the date's year end. """
     date = tuple(int(elem) for elem in date.split(separator))
     days = 0
@@ -85,24 +85,25 @@ def days_nmb(date1: str, date2: str, separator: str = '/') -> int:
 
     d1, d2 = tuple(int(elem) for elem in date1.split(separator)), tuple(int(elem) for elem in date2.split(separator))
     d1_month_days, d2_month_days =  month_days_nmb(d1[2], d1[1]), month_days_nmb(d2[2], d2[1])
+    err = f'{date2} cannot be smaller than {date1}.'
 
-    assert 1 <= d1[1] <= 12, 'Date1 months out of range.'
-    assert 1 <= d2[1] <= 12, 'Date2 months out of range.'
-    assert 1 <= d1[0] <= d1_month_days, 'Wrong date1 day number.' 
-    assert 1 <= d2[0] <= d2_month_days, 'Wrong date2 day number.'
-    assert d2[2] > d1[2], 'Date1 cannot be greater than date2.'
-
-    days = 0
-    for year in range(d1[2], d2[2] + 1):
-        if year == d1[2]:
-            days += date_remaining_days(date1, separator)
-            continue
-        elif year == d2[2]:
-            days += date_passed_days(date2, separator)
-            continue
-        days += year_days_nmb(year)
+    assert d2[2] >= d1[2], err
+    if d2[2] == d1[2]:
+        assert d2[1] >= d1[1], err
+        if d2[1] == d1[1]:
+            assert d2[0] >= d1[0], err
+        days = passed_days(date2, separator) - passed_days(date1, separator)
+    else:
+        days = 0
+        for year in range(d1[2], d2[2] + 1):
+            if year == d1[2]:
+                days += remaining_days(date1, separator)
+                continue
+            elif year == d2[2]:
+                days += passed_days(date2, separator)
+                continue
+            days += year_days_nmb(year)
     return days
 
 if __name__ == '__main__':
-    # print(days_nmb('30/07/2005', '13/09/2021'))
-    print(tuples(10, 10))
+    print(days_nmb('30/07/2021', '18/09/2021'))
