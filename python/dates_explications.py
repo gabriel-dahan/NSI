@@ -1,6 +1,6 @@
 """
 Exercices 'nombre de jours entre deux dates':
-    - Ecrire une fonction bissextile(a) qui renvoie un booléen indiquant si l'année a est une année est bissextile.
+    - Ecrire une fonction bissextile(a) qui renvoie un booléen indiquant si l'année a est une année bissextile.
     (Rappel : On dit qu'une année est bissextile si elle est multiple de 4 mais pas de 10 ou multiple de 400)
     - Ecrire une fonction nbjoursannee(a) qui renvoie le nombre de jours de l'année a, en utilisant la fonction bissextile.
     - Ecrire une fonction nbjoursmois(a, m) qui renvoie le nombre de jours dans le mois m de l'année a, en utilisant la fonction bissextile.
