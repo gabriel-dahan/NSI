@@ -65,4 +65,6 @@ def nbjours(j1, m1, a1, j2, m2, a2):
             jours += nbjoursannee(a) # Si l'année n'est ni celle de la première date ni celle de la deuxième alors on ajoute le nombre de jours de cette année (365 ou 366)
     return jours # On renvoie (enfin) le nombre de jours final entre les deux dates.
 
-print(nbjours(30, 7, 2021, 18, 8, 2021))
+d1 = (30, 7, 2005)
+d2 = (19, 9, 2021)
+print(nbjours(*d1, *d2))
