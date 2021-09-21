@@ -84,7 +84,6 @@ def remaining_days(date: str, separator: str = '/') -> int:
 def days_nmb(date1: str, date2: str, separator: str = '/') -> int:
 
     d1, d2 = tuple(int(elem) for elem in date1.split(separator)), tuple(int(elem) for elem in date2.split(separator))
-    d1_month_days, d2_month_days =  month_days_nmb(d1[2], d1[1]), month_days_nmb(d2[2], d2[1])
     err = f'{date2} cannot be smaller than {date1}.'
 
     assert d2[2] >= d1[2], err
@@ -106,4 +105,4 @@ def days_nmb(date1: str, date2: str, separator: str = '/') -> int:
     return days
 
 if __name__ == '__main__':
-    print(days_nmb('30/07/2021', '18/09/2021'))
+    pass
