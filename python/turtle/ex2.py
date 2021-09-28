@@ -3,10 +3,14 @@ from utils import start_before
 
 ####### EX 2 #######
 
-def square(length: int) -> None:
-    for side in range(4):
+def square(length: int, fill: str = None) -> None:
+    if fill: 
+        t.fillcolor(fill)
+        t.begin_fill()
+    for _ in range(4):
         t.forward(length)
         t.right(90)
+    if fill: t.end_fill()
 
 def square_sequence(a: int, n: int) -> None:
     start_before()
@@ -33,3 +37,6 @@ def growing_squares(a: int, n: int) -> None:
         t.down()
         length *= coeff
         print(space, length)
+
+if __name__ == '__main__':
+    t.mainloop()

@@ -1,9 +1,10 @@
 import turtle as t
 
-def reset():
+def reset(reset_heading: bool = True):
     t.up()
     t.goto(0, 0)
-    t.setheading(0)
+    if reset_heading:
+        t.setheading(0)
     t.down()
 
 def start_before():

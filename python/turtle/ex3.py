@@ -10,16 +10,12 @@ def plain_figures(iters: int, length: int) -> None:
         t.forward(length)
         t.down()
     t.width(3)
-    t.color('purple', 'orange')
+    t.pencolor('purple')
     for _ in range(iters):
-        t.begin_fill()
-        triangle_equ(length)
-        t.end_fill()
+        triangle_equ(length, fill = 'orange')
         space()
-        t.begin_fill()
-        square(length)
-        t.end_fill()
+        square(length, fill = 'orange')
         space()
 
-def rays(n: int, d: int) -> None:
-    pass
+if __name__ == '__main__':
+    t.mainloop()
