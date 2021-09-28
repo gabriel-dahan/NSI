@@ -2,14 +2,15 @@ import random
 
 class BlackJack:
 
-    __slots__ = ('max', 'client_score', 'bank_score')
+    __slots__ = ('max', 'client_score', 'bank_score', 'games')
 
     def __init__(self, max: int = 21):
         self.max = max
         self.client_score = 0
         self.bank_score = 0
+        self.games = 0
 
-    def _print_results(self):
+    def _print_results(self) -> None:
         if not self.client_score > self.max and self.client_score > self.bank_score or self.client_score == self.max or self.bank_score > self.max:
             print(f'\nLe joueur a gagné avec un score de {self.client_score} !')
         elif not not self.bank_score > self.max and self.bank_score > self.client_score or self.bank_score == self.max or self.client_score > self.max:
@@ -17,7 +18,7 @@ class BlackJack:
         else:
             print(f'\nLa partie est nulle.\n  Joueur : {self.client_score}\n  Coupier : {self.bank_score}')
 
-    def _print_detailed_results(self):
+    def _print_detailed_results(self) -> None:
         if self.client_score > self.max and self.bank_score > self.max:
             print(f'\nLa partie est nulle, les deux joueurs ayants dépassés {self.max}.')
         elif self.client_score > self.max:
@@ -34,10 +35,10 @@ class BlackJack:
             print(f'\nLe croupier à atteint {self.max} ! Le joueur à quant à lui un score de {self.bank_score}.')
         print()
 
-    def _print_current_score(self):
+    def _print_current_score(self) -> None:
         print(f'\nScore du joueur : {self.client_score}\nScore du croupier : {self.bank_score}\n')
 
-    def run(self, detailed_results = False):
+    def run(self, detailed_results = False) -> None:
         running = True
         while running:
             dices = int(input(f"Entrez le nombre de dés que vous voulez lancer (1-3) : \n--> "))
@@ -81,6 +82,19 @@ class BlackJack:
             else:
                 print('Erreur, veuillez écrire y (pour oui) et n (pour non).\n')
 
+    def replay(self) -> bool:
+        if self.games == 0:
+            self.games += 1
+            return True
+        self.client_score = 0
+        self.bank_score = 0
+        replay = input('\n --- Voulez vous rejouer (y/n) ? ')
+        if replay == 'y':
+            print('\n')
+            return True
+        return False        
+
 if __name__ == '__main__':
     bj = BlackJack()
-    bj.run()
+    while bj.replay():
+        bj.run(detailed_results = True)
