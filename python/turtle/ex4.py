@@ -100,5 +100,6 @@ def geometric_spiral(iters: int, length: int = 50, space: int = 20):
 
 if __name__ == '__main__':
     t.speed(20)
-    geometric_spiral(10)
+    # david_star(100, no_triangle = True)
+    # geometric_spiral(15)
     t.mainloop()
