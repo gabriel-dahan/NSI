@@ -35,12 +35,12 @@ if __name__ == '__main__':
             break
         gagnant = partie_simple()
         if gagnant == 0:
-            print(f'Match nul.')
+            print('Match nul.')
         elif gagnant == 1:
-            print(f'J1 a gagné la manche.')
+            print('J1 a gagné la manche.')
             score_j1 += 1
         else:
-            print(f'J2 a gagné la manche.')
+            print('J2 a gagné la manche.')
             score_j2 += 1
         print(f'\n--> Manches gagnées par J1 : {score_j1}/10')
         print(f'--> Manches gagnées par J2 : {score_j2}/10')
