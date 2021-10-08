@@ -29,12 +29,14 @@ def partie_simple() -> Literal[0, 1, 2]:
         gagnant = 2
     return gagnant
 
-def pfc() -> None:
-    """ Affiche les résultats d'une partie de 10 manches. """
+def pfc(m: int) -> None:
+    """ Joue et affiche les résultats d'une partie de m manches. """
+    assert m >= 1, 'Une partie doit compter au moins 1 manche.'
     score_j1 = 0
     score_j2 = 0
+    max_score = m / 2
     i = 0
-    while i < 10 and (score_j1 < 5 and score_j2 < 5):
+    while i < m and (score_j1 < max_score and score_j2 < max_score):
         gagnant = partie_simple()
         if gagnant == 0:
             print('Match nul.')
@@ -44,8 +46,8 @@ def pfc() -> None:
         else:
             print('J2 a gagné la manche.')
             score_j2 += 1
-        print(f'\n--> Manches gagnées par J1 : {score_j1}/5')
-        print(f'--> Manches gagnées par J2 : {score_j2}/5')
+        print(f'\n--> Manches gagnées par J1 : {score_j1}/{max_score}')
+        print(f'--> Manches gagnées par J2 : {score_j2}/{max_score}')
         i += 1
     if score_j1 > score_j2:
         print(f'\n### J1 gagne la partie avec {score_j1} points contre {score_j2} ! ###')
