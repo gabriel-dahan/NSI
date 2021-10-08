@@ -11,8 +11,10 @@
 """
 
 import random
+from typing import Literal
 
-def partie_simple():
+def partie_simple() -> Literal[0, 1, 2]:
+    """ Renvoie un entier spécifiant le résultat de la partie. """
     j1 = input('Pierre, Feuille ou Ciseaux (p, f ou c) ? ')
     while j1 not in 'pfc':
         j1 = input('p, f ou c : ')
@@ -27,12 +29,12 @@ def partie_simple():
         gagnant = 2
     return gagnant
 
-if __name__ == '__main__':
+def pfc() -> None:
+    """ Affiche les résultats d'une partie de 10 manches. """
     score_j1 = 0
     score_j2 = 0
-    for _ in range(10):
-        if score_j1 == 5 or score_j2 == 5:
-            break
+    i = 0
+    while i < 10 and (score_j1 < 5 and score_j2 < 5):
         gagnant = partie_simple()
         if gagnant == 0:
             print('Match nul.')
@@ -42,11 +44,15 @@ if __name__ == '__main__':
         else:
             print('J2 a gagné la manche.')
             score_j2 += 1
-        print(f'\n--> Manches gagnées par J1 : {score_j1}/10')
-        print(f'--> Manches gagnées par J2 : {score_j2}/10')
+        print(f'\n--> Manches gagnées par J1 : {score_j1}/5')
+        print(f'--> Manches gagnées par J2 : {score_j2}/5')
+        i += 1
     if score_j1 > score_j2:
         print(f'\n### J1 gagne la partie avec {score_j1} points contre {score_j2} ! ###')
     elif score_j1 == score_j2:
         print(f'\n### Match nul, J1 a autant de points que J2. ###')
     else:
         print(f'\n### J2 gagne la partie avec {score_j2} points contre {score_j1} ! ###')
+
+if __name__ == '__main__':
+    pfc()
