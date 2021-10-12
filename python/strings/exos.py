@@ -20,6 +20,7 @@ def ex4(text: str) -> bool:
 
 def ex5(base10: int) -> int:
     """ Returns the base 2 of a base 10 number """
+    assert base10 >= 0, 'Entered number must be postive.'
     return int(bin(base10)[2:])
 
 def ex6(base2: int) -> int:
@@ -31,4 +32,4 @@ def ex6(base2: int) -> int:
     return final
 
 if __name__ == '__main__':
-    print(ex2(count = True))
+    print(ex5(10))

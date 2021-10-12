@@ -28,19 +28,22 @@ donnees = (
 ### QUESTION 3 ###
 
 def temps_en_s(data: Tuple[Tuple[str, int]]) -> Tuple[Tuple[str, int]]:
-    new_data = []
+    """ Returns data with the race times in seconds. """
+    new_data = ()
     for elem in data:
-        new_data.append((elem[0], temps_secondes(elem[1])))
-    return tuple(new_data)
+        new_data += ((elem[0], temps_secondes(elem[1])),)
+    return new_data
 
 ### QUESTION 4 ###
 
 # 1)
 def liste_temps(data: Tuple[Tuple[str, int]]) -> Tuple[Tuple[str, int]]:
+    """ Returns a tuple of the race times in seconds. """
     return tuple(temps_secondes(elem[1]) for elem in data)
 
 # 2)
 def val_min(_tuple: Tuple[int]) -> Tuple[int]:
+    """ Returns a tuple of the minimal value of a tuple and its index. """
     temp = (0, _tuple[0])
     for i, val in enumerate(_tuple):
         if not val < temp[1]:
@@ -51,6 +54,7 @@ def val_min(_tuple: Tuple[int]) -> Tuple[int]:
 ### QUESTION 5 ###
 
 def gagnant(data: Tuple[Tuple[str, int]]) -> str:
+    """ Returns the winner of the race. """
     data = temps_en_s(data)
     temp = data[0]
     for elem in data:
@@ -60,4 +64,4 @@ def gagnant(data: Tuple[Tuple[str, int]]) -> str:
     return temp
 
 if __name__ == '__main__':
-    print(gagnant(donnees))
+    print(temps_en_s(donnees))
