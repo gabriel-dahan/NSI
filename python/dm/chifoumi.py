@@ -15,33 +15,33 @@ import random
 from typing import Literal
 
 def simple_round() -> Literal[0, 1, 2]:
-    """ Returns an integer specifying the result of the part. """
+    """ Returns an integer specifying the result of a round of chifoumi. """
     p1 = input('Rock, Paper or Scissors (r, p or s) ? ')
     while p1 not in 'rps':
         p1 = input('r, p or s : ')
     p2 = random.choice('rps')
     if p1 == p2:
-        gagnant = 0
+        winner = 0
     elif (p1 == 'r' and p2 == 's') \
         or (p1 == 'p' and p2 == 'r') \
         or (p1 == 's' and p2 == 'p'):
-        gagnant = 1
+        winner = 1
     else:
-        gagnant = 2
-    return gagnant
+        winner = 2
+    return winner
 
-def play_chifoumi(rounds: int = 10) -> None:
-    """ Play and display the results of a game of m rounds. """
-    assert rounds >= 1, 'A game must last at least 1 round.'
+def play_chifoumi(r: int = 10) -> None:
+    """ Play and display the results of a game of r rounds. """
+    assert r >= 1, 'A game must last at least 1 round.'
     p1_score = 0
     p2_score = 0
-    max_score = rounds // 2 if rounds % 2 == 0 else (rounds // 2) + 1
+    max_score = r // 2 if r % 2 == 0 else (r // 2) + 1
     i = 0
-    while i < rounds and (p1_score < max_score and p2_score < max_score):
-        gagnant = simple_round()
-        if gagnant == 0:
+    while i < r and (p1_score < max_score and p2_score < max_score):
+        winner = simple_round()
+        if winner == 0:
             print('Draw...')
-        elif gagnant == 1:
+        elif winner == 1:
             print('P1 won the round.')
             p1_score += 1
         else:
