@@ -9,18 +9,20 @@ from typing import List
 ### EX 3 ###
 def ask_grades(n: int) -> list:
     """ Ask the user to enter a list of x grades. """
-    l = []
+    grades, coeff = [], []
     for i in range(1, n + 1):
-        l.append(int(input(f'Entrez la note {i} : ')))
-    return l
+        grade = input(f'Entrez la note {i} et son coefficient (séparés par un \':\') : ').split(':')
+        grades.append(int(grade[0]))
+        coeff.append(int(grade[1]))
+    return grades, coeff
 
 def mean_of(n: int) -> float:
     """ Returns the mean of the values from a list of x ints. """
-    grades = ask_grades(n)
+    grades, coeff = ask_grades(n)
     s = 0
-    for grade in grades:
-        s += grade
-    return s / len(grades)
+    for i in range(len(grades)):
+        s += grades[i] * coeff[i]
+    return s / sum(coeff)
 
 ### EX 4 ###
 def ask_ints():
@@ -56,4 +58,4 @@ def schtroumpf(l1: list, l2: list) -> list:
     return s
 
 if __name__ == '__main__':
-    print(schtroumpf([4, 8, 7, 12], [3, 6]))
+    print(mean_of(10))
