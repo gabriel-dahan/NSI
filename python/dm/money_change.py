@@ -1,4 +1,12 @@
+nb_50euros = 0
+nb_20euros = 0
+nb_10euros = 0
+nb_5euros  = 0
+nb_2euros  = 0
+nb_1euro   = 0
+
 def money_change(asked: int, paid: int) -> list:
+    """ Returns a list of the number of each type of currency the cashier must return. """
     assert paid >= asked, 'You don\'t have enough money to pay.'
     rest = paid - asked
     currency = [
