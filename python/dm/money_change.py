@@ -1,5 +1,5 @@
 def money_change(asked: int, paid: int, cash_register: dict) -> dict:
-    """ Returns a list of the number of each type of currency the cashier must return. """
+    """ Returns a dict of the change the cashier must return. """
     assert paid >= asked, 'You don\'t have enough money to pay.'
     rest = paid - asked
     # total_cash = sum(_type * cash_register[_type] for _type in cash_register)
@@ -8,7 +8,7 @@ def money_change(asked: int, paid: int, cash_register: dict) -> dict:
         total_cash.append(_type * cash_register[_type])
     total_cash = sum(total_cash)
     assert total_cash >= rest, 'The cash register does not contain enough money to return.'
-    currencies = {
+    change = {
         50: 0,
         20: 0,
         10: 0,
@@ -16,26 +16,23 @@ def money_change(asked: int, paid: int, cash_register: dict) -> dict:
         2: 0,
         1: 0
     }
-    for _type in currencies: # For each type of currency from 50$ to 1$.
-        running = True
-        while running and rest >= _type: # While there's enough money to return with the current currency type.
-            if cash_register[_type] < 1:
-                running = False
-                continue
+    for _type in change: # For each type of change from 50€ to 1€.
+        # While the cash register contains enough money and the rest of the money to be returned is greater than the type of change to be returned.
+        while cash_register[_type] >= 1 and rest >= _type:
             cash_register[_type] -= 1
-            currencies[_type] += 1
+            change[_type] += 1
             rest -= _type
-    return currencies
+    return change
 
 def format_change(currencies: dict) -> None:
     """ Prints the change to be returned by the cashier. """
     # change = ''.join([f"\n - {currency} x {_type}$" for _type, currency in currencies.items() if currency > 0])
-    change = ''
-    for _type, currency in currencies.items():
-        if not currency > 0:
+    formated_change = ''
+    for _type, change in currencies.items():
+        if not change > 0:
             continue
-        change += f'\n - {currency} x {_type}$'
-    print(f'Change to be returned : {change}')
+        formated_change += f'\n - {change} x {_type}$'
+    print(f'Change to be returned : {formated_change}')
 
 def main(asked: int, paid: int, cash_register: dict, no_format: bool = False) -> None:
     """ Launches the program. """
