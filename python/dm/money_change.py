@@ -34,9 +34,12 @@ def format_change(currencies: dict) -> None:
         formated_change += f'\n - {change} x {_type}$'
     print(f'Change to be returned : {formated_change}')
 
-def main(asked: int, paid: int, cash_register: dict, no_format: bool = False) -> None:
+def main(cash_register: dict, no_format: bool = False) -> None:
     """ Launches the program. """
-    change = money_change(asked, paid, cash_register)
+    requested = int(input("How much money is requested by the cashier ? "))
+    paid = int(input("How much money did you pay ? "))
+    print()
+    change = money_change(requested, paid, cash_register)
     if no_format:
         print(change)
         return
@@ -51,14 +54,12 @@ if __name__ == '__main__':
     nb_50euros = 4
 
     main(
-        asked = 12, 
-        paid = 50, 
-        cash_register = {
+        {
             50: nb_50euros,
             20: nb_20euros,
             10: nb_10euros,
             5: nb_5euros,
-            2: nb_2euros,
+            2: nb_20euros,
             1: nb_1euro
         }
     )
