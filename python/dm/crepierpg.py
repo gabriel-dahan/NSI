@@ -28,3 +28,10 @@ if __name__ == '__main__':
     ]
     crepes = change_order_to(get_index_of_max(crepes), crepes)
     print(crepes)
+
+
+
+i = crepes.index(max(crepes))
+temp = crepes[-1]
+crepes[-1] = crepes[i]
+crepes[i] = temp

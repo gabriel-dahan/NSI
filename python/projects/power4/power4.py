@@ -28,13 +28,14 @@ def update_grid(arr: Grid, player: int, players_repr: tuple) -> Grid:
         if arr[column][line] != 0:
             continue
         arr[column][line] = player
-        break
+        return arr
     return arr
 
 def format_grid(arr: Grid, players_repr: tuple) -> str:
     formated = ''
     for j in range(len(arr) - 1):
-        formated += ' | '.join([players_repr[arr[i][j]] for i in range(len(arr))]) + '\n--------------------------\n'
+        formated += ' | '.join([players_repr[arr[i][j]] for i in range(len(arr))]) + \
+            '\n--------------------------\n'
     return formated
 
 def rowify(arr: Grid) -> Grid:
@@ -58,6 +59,7 @@ def diagonalize(arr: Grid) -> Grid:
     return decr + incr
 
     """
+        Tests unitaires :
         decr1 = [arr[column][column + 2] for column in range(4)]
         decr2 = [arr[column][column + 1] for column in range(5)]
         decr3 = [arr[column][column] for column in range(6)]
@@ -94,12 +96,12 @@ def check_in(l: list) -> int:
             return temp
     return 0
 
-def end_game(winner: int):
+def end_game(winner: int, players_repr: tuple):
     import sys
-    print(f'La partie est finie, le joueur {winner} à gagné !')
+    print(f'La partie est finie, le joueur {players_repr[winner]} à gagné !')
     sys.exit(1)
 
-def main(players_repr: tuple = ('-', '⬟', '⬠')):
+def main(players_repr: tuple = (' ', '⬟', '⬠')):
     running = True
     i = 1
     arr = init_array()
@@ -107,7 +109,7 @@ def main(players_repr: tuple = ('-', '⬟', '⬠')):
         player = 1 if i % 2 == 0 else 2
         winner = check(arr)
         if winner != 0:
-            end_game(winner)
+            end_game(winner, players_repr)
         arr = update_grid(arr, player, players_repr)
         i += 1
         clear()
