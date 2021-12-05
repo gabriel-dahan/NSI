@@ -1,4 +1,5 @@
 from typing import List
+import sys
 
 Grid = List[List[int]]
 
@@ -33,9 +34,11 @@ def update_grid(arr: Grid, player: int, players_repr: tuple) -> Grid:
 
 def format_grid(arr: Grid, players_repr: tuple) -> str:
     formated = ''
-    for j in range(len(arr) - 1):
-        formated += ' | '.join([players_repr[arr[i][j]] for i in range(len(arr))]) + \
+    for i in range(len(arr) - 1):
+        rows = rowify(arr)
+        formated += ' | '.join([players_repr[rows[i][j]] for j in range(len(arr))]) + \
             '\n--------------------------\n'
+    formated += ' 1  2   3   4   5   6   7 \n'
     return formated
 
 def rowify(arr: Grid) -> Grid:
@@ -97,7 +100,6 @@ def check_in(l: list) -> int:
     return 0
 
 def end_game(winner: int, players_repr: tuple):
-    import sys
     print(f'La partie est finie, le joueur {players_repr[winner]} à gagné !')
     sys.exit(1)
 
