@@ -1,5 +1,4 @@
 from typing import List
-import sys
 
 Grid = List[List[int]]
 
@@ -99,21 +98,29 @@ def check_in(l: list) -> int:
             return temp
     return 0
 
-def end_game(winner: int, players_repr: tuple):
-    print(f'La partie est finie, le joueur {players_repr[winner]} à gagné !')
-    sys.exit(1)
+def draw(arr: Grid) -> bool:
+    for column in arr:
+        if 0 in column:
+            return False
+    return True
 
 def main(players_repr: tuple = (' ', '⬟', '⬠')):
     running = True
-    i = 1
+    i = 0
     arr = init_array()
     while running:
+        i += 1
         player = 1 if i % 2 == 0 else 2
         winner = check(arr)
         if winner != 0:
-            end_game(winner, players_repr)
+            print(f'La partie est finie, le joueur {players_repr[winner]} à gagné !')
+            running = False
+            continue
+        elif draw(arr):
+            print('Aucun joueur n\'a gagné.')
+            running = False
+            continue
         arr = update_grid(arr, player, players_repr)
-        i += 1
         clear()
         print(format_grid(arr, players_repr))
 

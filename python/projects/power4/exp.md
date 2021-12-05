@@ -4,7 +4,7 @@
 
 Importation du module `os`, permettant dans ce cas d'executer la commande 'clear' ou 'cls' en fonction du système d'exploitation de la machine sur laquelle le code est executé ('cls' si windows sinon 'clear').
 ### Init Array (`list`)
- - _Cette fonciton crée la grille du jeu et la renvoie :_ 
+ - _Cette fonction crée la grille du jeu et la renvoie :_ 
 
  Tableau de 6 x 7 élements (Liste à 2 dimensions avec 7 lignes de 6 élements).
 ### Ask Player (`int`)
@@ -35,10 +35,9 @@ Exemple :
 ### Check In/Check (`int`)
  - _La fonction `check_in()` va vérifier, dans une liste simple, si il y a une suite de 4 élements successifs, et retournera l'élement qui est présent 4 fois de suite (0, 1, ou 2). Si aucun élement n'est présent 4 fois de suite, 0 sera alors retourné._
  - _La fonction `check()`, à l'aide de la fonction `check_in()`, va vérifier pour chaque colonne, chaque ligne et chaque diagonale de la grille si une suite de 4 '1' ou de 4 '2' est présente, puis retournera le gagnant (1 ou 2) ou 0 si il n'y a pas de gagnant._
-
 ### End Game (`None`)
- - _Cette fonction permet d'afficher un message en précisant le joueur ayant gagné la partie, puis d'arrêter le programme._
+ - _Cette fonction permet d'afficher un message en précisant le joueur ayant gagné la partie._
+### Main (`None`)
+ - _Cette fonction gère le fonctionnement général du programme, elle contient la boucle du jeu et appelle les fonctions principales._
 
-Utilisation du module `sys` permettant, grâce à sa fonction `exit`, d'arrêter le programme.
-
-
+Compteur `i` initialité à 0, création de la grille de jeu (`arr`). Lancement de la boucle de jeu qui à chaque tour de boucle va incrémenter `i` puis assigner 1 ou 2 à la variable `player` en fonction de la parité de `i`
