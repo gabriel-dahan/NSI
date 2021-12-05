@@ -40,4 +40,6 @@ Exemple :
 ### Main (`None`)
  - _Cette fonction gère le fonctionnement général du programme, elle contient la boucle du jeu et appelle les fonctions principales._
 
-Compteur `i` initialité à 0, création de la grille de jeu (`arr`). Lancement de la boucle de jeu qui à chaque tour de boucle va incrémenter `i` puis assigner 1 ou 2 à la variable `player` en fonction de la parité de `i`
+Compteur `i` initialité à 0, création de la grille de jeu (`arr`). Lancement de la boucle de jeu qui à chaque tour de boucle va incrémenter `i` puis assigner 1 ou 2 à la variable `player` en fonction de la parité de `i`.
+Varible `winner` à laquelle on assigne à chaque tour de boucle la valeur du potentiel gagnant (0, 1 ou 2). Si le gagnant est différent de 0, c'est qu'il y a un gagnant et donc que la partie est finie, sinon si la grille est remplie mais qu'il n'y a pas de gagnant, alors la partie se finit avec une égalité.
+Si il n'y a aucun gagnant et que la grille n'est pas pleine, alors on met à jour la grille avec la fonction `update_grid` (qui va demander au joueur de placer un pion sur une colonne etc...), puis on `clear` le shell et on affiche la grille mise à jour.
