@@ -127,7 +127,5 @@ def main(players_repr: tuple = (' ', '⬟', '⬠')):
 try:
     main()
 except KeyboardInterrupt:
-    import sys
     clear()
     print('Game stopped (--> KeyboardInterrupt)')
-    sys.exit(1)
