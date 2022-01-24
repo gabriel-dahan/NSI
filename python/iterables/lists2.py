@@ -51,7 +51,7 @@ def diagonalize(array: list, unit: Any = 1) -> list:
     return array
 
 def consecutive(array: list, start: int = 1) -> list:
-    for i in range(len(array)):
+    for _ in range(len(array)):
         pass
     return array
 
