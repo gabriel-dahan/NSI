@@ -47,9 +47,7 @@ class XMLFile(object):
         pass
 
 if __name__ == '__main__':
-    """f = TXTFile('./testing_files/file.txt')
+    f = TXTFile('./testing_files/file.txt')
     for _ in range(100):
         import random as r
-        f.write(f'{r.randint(1, 100)}')"""
-    f = JSONFile('./testing_files/file.json')
-    print(f.read())
+        f.write(f'{r.randint(1, 100)}')
