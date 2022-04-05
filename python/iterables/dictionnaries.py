@@ -1,5 +1,5 @@
 import sys
-
+import csv
 
 def exo1():
     d = {'nom': 'Dupuis', 'prenom': 'Jacque', 'age': 30}
@@ -7,10 +7,8 @@ def exo1():
     print(f' - Clés : {list(d.keys())}\n - Valeurs : {list(d.values())}\n - Paires K/V : {list(d.items())}')
     print(f"{d['prenom']} {d['nom']} a {d['age']} ans")
 
-def exo2():
-    dic = {
-        
-    }
+def annuaire():
+    dic = {}
     running = True
     while running:
         choice = int(input(
@@ -37,7 +35,7 @@ def exo2():
                 if name in ('0', '__exit__'):
                     running_nested = False
                     continue
-                if not name in dic.keys():
+                if name not in dic:
                     print(f'Name {name} not found in phone repository.')
                     continue
                 print(f"{name}'s phone number : {dic[name]}")
@@ -54,9 +52,13 @@ def exo3_tp_a(word: str):
     }
     s = 0
     for char in word:
+        found = 0
         for k, v in values_scrabble.items():
-            if char == v:
-                s += k
+            if char in v:
+                found = k
+        s += found or 1
+
+    print(s)
     
 ## TP b)
 values_scrabble = {
@@ -70,13 +72,24 @@ values_scrabble = {
 def wordval(word: str):
     return sum(values_scrabble[char] for char in word)
 
-def exo3_tp_c():
-    m1, m2, m3 = 'arpentes', 'paternes', 'trepanes'
+m1, m2, m3 = 'arpentes', 'paternes', 'trepanes'
+
+def words_value():
     v1, v2, v3 = (m1, wordval(m1)), (m2, wordval(m2)), (m3, wordval(m3))
-    print(v1, v2, v3)
+    return v1, v2, v3
+
+def wordval_triple(word: str):
+    return sum(
+        values_scrabble[char] * 3 if i == 3 else values_scrabble[char]
+        for i, char in enumerate(word)
+    )
+
+def triple_on_4th():
+    for word in (m1, m2, m3):
+        print(wordval_triple(word))
 
 if __name__ == '__main__':
     try:
-        exo2()
+        annuaire()
     except KeyboardInterrupt:
         sys.exit(1)

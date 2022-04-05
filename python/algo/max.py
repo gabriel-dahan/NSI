@@ -15,6 +15,7 @@ def recherche_max(tab):
     _max = tab[0]
     i = 0
     while len(tab) - i > 0:
+        assert _max == max(tab[:i])
         if tab[i] > _max:
             _max = tab[i]
         i += 1

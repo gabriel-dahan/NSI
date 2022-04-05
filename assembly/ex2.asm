@@ -1,0 +1,13 @@
+LDR R0,x
+LDR R1,y
+SUB R2,R1,R0
+CMP R0,R1
+BEQ fun
+STR R2,105
+HALT
+fun:
+  MOV R2,#0
+  STR R2,105
+  HALT
+x:5
+y:10
